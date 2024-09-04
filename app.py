@@ -45,10 +45,11 @@ app = Flask(__name__)
 def generate_dialogue():
     data = request.json
     player_input = data['input']
-    
-    # Generate the hostage taker's response
-    hostage_taker_response = generate_hostage_taker_response(player_input)
-    
+    scenario = data['scenario']
+    relationship_state = data['relationship_state']
+
+    hostage_taker_response = generate_hostage_taker_response(scenario, player_input, relationship_state)
+
     return jsonify({'response': hostage_taker_response})
 
 if __name__ == '__main__':
